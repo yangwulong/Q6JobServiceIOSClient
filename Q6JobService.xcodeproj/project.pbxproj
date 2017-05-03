@@ -74,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				1999B0861E91C97800913C24 /* Models */,
+				1999B0871E91C98800913C24 /* Controllers */,
 				1999B0851E91C96C00913C24 /* Views */,
 				1999B0731E91C8EC00913C24 /* AppDelegate.swift */,
 				1999B0771E91C8EC00913C24 /* Main.storyboard */,
@@ -94,7 +95,6 @@
 		1999B0861E91C97800913C24 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1999B0871E91C98800913C24 /* Controllers */,
 			);
 			name = Models;
 			sourceTree = "<group>";

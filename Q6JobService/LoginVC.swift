@@ -23,9 +23,8 @@ class LoginVC: UIViewController ,UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
-         }
+       
+    }
 
     override open func viewWillDisappear(_ animated: Bool) {
         deregisterFromKeyboardNotifications()
