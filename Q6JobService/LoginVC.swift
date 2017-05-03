@@ -23,7 +23,9 @@ class LoginVC: UIViewController ,UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    }
+        
+        
+         }
 
     override open func viewWillDisappear(_ animated: Bool) {
         deregisterFromKeyboardNotifications()
@@ -38,11 +40,28 @@ class LoginVC: UIViewController ,UITextFieldDelegate{
         scrollView.isScrollEnabled = false
         scrollView.setContentOffset(CGPoint(x:0,y:0), animated: true)
         
-        print("tap")
+        
     }
     
 
+    @IBAction func SignInBtnClick(_ sender: Any) {
+        
+       if verifyUserInput()
+       {
+        
+        }
+       else{
+        
+        }
+    }
     
+    func verifyUserInput() ->Bool {
+        
+         let loginEmail = txtLoginEmail.text
+         let passWord = txtLoginPassword.text
+       return Q6JobServiceCommonLibrary.isEmailAddressValid(email: loginEmail!)&&(passWord!.isEmpty == false)
+        
+    }
     func registerForKeyboardNotifications()
     {
         
