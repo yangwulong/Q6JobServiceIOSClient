@@ -13,7 +13,8 @@ import SystemConfiguration
 public class Q6JobServiceCommonLibrary
 {
     
-    
+    static let q6WebApiUrl = "https://jobapi.q6.com.au/api/"
+    static let q6WebApiTOKEN = "91561308-B547-4B4E-8289-D5F0B23F0037"
     
     public static func isEmailAddressValid(email: String) -> Bool {
         
@@ -63,5 +64,12 @@ public class Q6JobServiceCommonLibrary
             freeifaddrs(ifaddr)
         }
         return addresses[0]   //return public IP ,addresses[1] return private ip
+    }
+    
+   static func getMobileDeviceToken()->String
+    {
+        let deviceID = UIDevice.current.identifierForVendor?.uuidString
+        return deviceID!
+    
     }
 }

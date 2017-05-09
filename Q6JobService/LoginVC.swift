@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import Alamofire
+import SwiftyJSON
 class LoginVC: UIViewController ,UITextFieldDelegate{
 
     var activeField: UITextField?
@@ -24,6 +25,7 @@ class LoginVC: UIViewController ,UITextFieldDelegate{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
        
+    print("deviceID" +  Q6JobServiceCommonLibrary.getMobileDeviceToken())
     }
 
     override open func viewWillDisappear(_ animated: Bool) {
@@ -47,7 +49,32 @@ class LoginVC: UIViewController ,UITextFieldDelegate{
         
        if verifyUserInput()
        {
+         let APIURL = Q6JobServiceCommonLibrary.q6WebApiUrl + "Q6/UserLogin"
         
+        print(APIURL)
+       // var parameters: Parameters = ["foo": "bar"]
+        
+        var parameters = Parameters()
+        parameters["WebApiTOKEN"] = Q6JobServiceCommonLibrary.q6WebApiTOKEN
+        parameters["LoginName"] = txtLoginEmail.text
+        parameters["Password"] = txtLoginPassword.text
+        parameters["ClientIP"] = Q6JobServiceCommonLibrary.getIPAddresses()
+        parameters["MobileDeviceToken"] = Q6JobServiceCommonLibrary.getMobileDeviceToken()
+        Alamofire.request(APIURL,method: .post,parameters: parameters).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+           
+                    let swiftyJsonVar = JSON(value)
+                    
+                    var dd = swiftyJsonVar["ReturnData"]["CompanyID"]
+                    print(dd)
+
+                  
+            
+            case .failure(let error):
+                print(error)
+            }
+        }
         }
        else{
         
