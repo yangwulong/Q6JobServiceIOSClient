@@ -5,4 +5,5 @@ use_frameworks!
 target 'Q6JobService' do
     pod 'Alamofire', '~> 4.4'
     pod 'SwiftyJSON'
+    pod 'SQLite.swift', '~> 0.11.3'
 end

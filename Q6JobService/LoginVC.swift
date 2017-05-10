@@ -66,10 +66,11 @@ class LoginVC: UIViewController ,UITextFieldDelegate{
            
                     let swiftyJsonVar = JSON(value)
                     
-                    var dd = swiftyJsonVar["ReturnData"]["CompanyID"]
-                    print(dd)
-
-                  
+                    let date = Date()
+                    print(date.description)
+                    
+                    print(parameters["LoginName"] as! String)
+                    Q6JobServiceDBLibrary.insertUserLoginrow(_LoginEmail:parameters["LoginName"] as! String,_LoginPassword:parameters["Password"] as! String,_WebApiToken:parameters["WebApiTOKEN"] as! String, _LoginDateTime:date.description,_MobileDeviceToken:parameters["MobileDeviceToken"] as! String)
             
             case .failure(let error):
                 print(error)

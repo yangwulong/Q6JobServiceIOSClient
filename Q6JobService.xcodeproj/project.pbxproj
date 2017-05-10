@@ -17,6 +17,8 @@
 		1999B0791E91C8EC00913C24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1999B0771E91C8EC00913C24 /* Main.storyboard */; };
 		1999B07B1E91C8EC00913C24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1999B07A1E91C8EC00913C24 /* Assets.xcassets */; };
 		1999B07E1E91C8EC00913C24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1999B07C1E91C8EC00913C24 /* LaunchScreen.storyboard */; };
+		19F5197C1EC2B918006EC7A0 /* Q6JobServiceDBLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5197B1EC2B918006EC7A0 /* Q6JobServiceDBLibrary.swift */; };
+		19F519C81EC2E175006EC7A0 /* Tasks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19F519C71EC2E175006EC7A0 /* Tasks.storyboard */; };
 		881C68C0C7FC25100882A023 /* Pods_Q6JobService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8DC66B55A8CF0B883C7F8E /* Pods_Q6JobService.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		1999B07A1E91C8EC00913C24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1999B07D1E91C8EC00913C24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1999B07F1E91C8EC00913C24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19F5197B1EC2B918006EC7A0 /* Q6JobServiceDBLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q6JobServiceDBLibrary.swift; sourceTree = "<group>"; };
+		19F519C71EC2E175006EC7A0 /* Tasks.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tasks.storyboard; sourceTree = "<group>"; };
 		1B527649D8FCEB6EF4E62C90 /* Pods-Q6JobService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Q6JobService.release.xcconfig"; path = "Pods/Target Support Files/Pods-Q6JobService/Pods-Q6JobService.release.xcconfig"; sourceTree = "<group>"; };
 		67D9B4D83A12937DEBFABED9 /* Pods-Q6JobService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Q6JobService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Q6JobService/Pods-Q6JobService.debug.xcconfig"; sourceTree = "<group>"; };
 		8D8DC66B55A8CF0B883C7F8E /* Pods_Q6JobService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Q6JobService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +61,7 @@
 				196A448F1EB960F100D8120C /* Q6JobServiceCommonLibrary.swift */,
 				196A44911EB9634D00D8120C /* Q6JobService-Bridging-Header.h */,
 				1909F56C1EC17D73007DDE44 /* JobsVC.swift */,
+				19F5197B1EC2B918006EC7A0 /* Q6JobServiceDBLibrary.swift */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -86,7 +91,6 @@
 				1999B0871E91C98800913C24 /* Controllers */,
 				1999B0851E91C96C00913C24 /* Views */,
 				1999B0731E91C8EC00913C24 /* AppDelegate.swift */,
-				1999B0771E91C8EC00913C24 /* Main.storyboard */,
 				1999B07A1E91C8EC00913C24 /* Assets.xcassets */,
 				1999B07C1E91C8EC00913C24 /* LaunchScreen.storyboard */,
 				1999B07F1E91C8EC00913C24 /* Info.plist */,
@@ -98,6 +102,8 @@
 		1999B0851E91C96C00913C24 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1999B0771E91C8EC00913C24 /* Main.storyboard */,
+				19F519C71EC2E175006EC7A0 /* Tasks.storyboard */,
 				1909F5721EC18015007DDE44 /* SlideHorSegue.swift */,
 			);
 			name = Views;
@@ -204,6 +210,7 @@
 				1999B07B1E91C8EC00913C24 /* Assets.xcassets in Resources */,
 				1999B0791E91C8EC00913C24 /* Main.storyboard in Resources */,
 				196A44931EB9836100D8120C /* Development Notes.rtf in Resources */,
+				19F519C81EC2E175006EC7A0 /* Tasks.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +273,7 @@
 				1909F5731EC18015007DDE44 /* SlideHorSegue.swift in Sources */,
 				1999B0741E91C8EC00913C24 /* AppDelegate.swift in Sources */,
 				1909F5711EC17E8C007DDE44 /* MainFunTabVC.swift in Sources */,
+				19F5197C1EC2B918006EC7A0 /* Q6JobServiceDBLibrary.swift in Sources */,
 				1909F56D1EC17D73007DDE44 /* JobsVC.swift in Sources */,
 				196A44901EB960F100D8120C /* Q6JobServiceCommonLibrary.swift in Sources */,
 			);

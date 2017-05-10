@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7EE557ADCF55B8FCC02C5A3E4F92B81E"
+               BlueprintIdentifier = "54EF8738971BBBAB3273E8930C2BF141"
                BuildableName = "Pods_Q6JobService.framework"
                BlueprintName = "Pods-Q6JobService"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7EE557ADCF55B8FCC02C5A3E4F92B81E"
+            BlueprintIdentifier = "54EF8738971BBBAB3273E8930C2BF141"
             BuildableName = "Pods_Q6JobService.framework"
             BlueprintName = "Pods-Q6JobService"
             ReferencedContainer = "container:Pods.xcodeproj">
