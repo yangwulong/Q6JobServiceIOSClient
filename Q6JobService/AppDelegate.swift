@@ -20,10 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Q6JobServiceDBLibrary.createDB()
         Q6JobServiceDBLibrary.createUserLoginTable()
         
+        if Q6JobServiceDBLibrary.VerifyHasDataInUserLoginTable()
+        {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = storyBoard.instantiateViewController(withIdentifier: "LoginScreen") as! LoginVC
-        self.window?.rootViewController = loginVC
+        let mainFunTabVC = storyBoard.instantiateViewController(withIdentifier: "MainFunTabVC") as! MainFunTabVC
+        self.window?.rootViewController = mainFunTabVC
+        }
         return true
+            
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

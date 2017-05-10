@@ -61,6 +61,35 @@ class Q6JobServiceDBLibrary{
             
         }
     }
+    
+    
+    static func VerifyHasDataInUserLoginTable() -> Bool{
+        
+        var hasData:Bool = false
+        do{
+            let path = NSSearchPathForDirectoriesInDomains(
+                .documentDirectory, .userDomainMask, true
+                ).first!
+            
+            print(path)
+            let db = try Connection("\(path)/Q6JobServiceDB.sqlite3")
+            
+            let userLogin = Table("userLogin")
+            
+            if let userLogin = try db.pluck(userLogin) {
+            
+            hasData = true
+            } // Row
+            
+            
+     
+        }
+        catch{
+            
+        }
+        
+        return hasData
+    }
     static func insertUserLoginrow(_LoginEmail:String,_LoginPassword:String,_WebApiToken:String,_LoginDateTime:String,_MobileDeviceToken:String)
     {
         do{
