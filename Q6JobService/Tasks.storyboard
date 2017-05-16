@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LXT-TU-asb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LXT-TU-asb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Tasks-->
         <scene sceneID="lRs-GO-WqO">
             <objects>
-                <viewController id="IRZ-cG-3xp" sceneMemberID="viewController">
+                <viewController id="IRZ-cG-3xp" customClass="TaskListTabVC" customModule="Q6JobService" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gxi-KV-P39"/>
                         <viewControllerLayoutGuide type="bottom" id="jTQ-EL-oyw"/>
@@ -30,58 +30,67 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5cb-hd-LKb">
                                 <rect key="frame" x="16" y="122" width="343" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DueDate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jur-1S-kIz">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="coD-oj-TMV">
-                                        <rect key="frame" x="0.0" y="49" width="343" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskListTableCell" rowHeight="80" id="coD-oj-TMV" customClass="TaskListTableCell" customModule="Q6JobService" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="coD-oj-TMV" id="lRG-EY-k7I">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="JOB00000020" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObP-eB-WEW">
-                                                    <rect key="frame" x="8" y="0.0" width="100" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB00000020" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObP-eB-WEW">
+                                                    <rect key="frame" x="2" y="2" width="86" height="17"/>
                                                     <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wuyang Yang" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReJ-zN-XcU">
-                                                    <rect key="frame" x="8" y="19" width="100" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09/05/2017" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pef-bX-QHq">
+                                                    <rect key="frame" x="262.5" y="2" width="78.5" height="17"/>
                                                     <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="09/05/2017" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pef-bX-QHq">
-                                                    <rect key="frame" x="249" y="4" width="86" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DueDate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hf-5q-Nrh">
+                                                    <rect key="frame" x="197.5" y="2" width="63" height="17"/>
                                                     <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DueDate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hf-5q-Nrh">
-                                                    <rect key="frame" x="172" y="4" width="69" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Task Details" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-fd-KwR">
-                                                    <rect key="frame" x="8" y="40" width="335" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Task Details" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTV-fd-KwR">
+                                                    <rect key="frame" x="2" y="40" width="339" height="38.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wuyang Yang" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReJ-zN-XcU">
+                                                    <rect key="frame" x="2" y="21" width="93" height="17"/>
+                                                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pef-bX-QHq" firstAttribute="top" secondItem="lRG-EY-k7I" secondAttribute="top" constant="2" id="16l-Md-vvh"/>
+                                                <constraint firstItem="ReJ-zN-XcU" firstAttribute="top" secondItem="ObP-eB-WEW" secondAttribute="bottom" constant="2" id="8po-Sh-myq"/>
+                                                <constraint firstItem="cTV-fd-KwR" firstAttribute="leading" secondItem="lRG-EY-k7I" secondAttribute="leading" constant="2" id="EnC-zs-vC8"/>
+                                                <constraint firstAttribute="bottom" secondItem="cTV-fd-KwR" secondAttribute="bottom" constant="1" id="Nr1-y6-YyH"/>
+                                                <constraint firstItem="ReJ-zN-XcU" firstAttribute="leading" secondItem="lRG-EY-k7I" secondAttribute="leadingMargin" constant="-6" id="QgP-C2-pPU"/>
+                                                <constraint firstItem="cTV-fd-KwR" firstAttribute="top" secondItem="ReJ-zN-XcU" secondAttribute="bottom" constant="2" id="TEb-c8-r3w"/>
+                                                <constraint firstItem="ObP-eB-WEW" firstAttribute="top" secondItem="lRG-EY-k7I" secondAttribute="top" constant="2" id="TIP-V8-tVI"/>
+                                                <constraint firstAttribute="trailing" secondItem="pef-bX-QHq" secondAttribute="trailing" constant="2" id="cuU-WH-RXw"/>
+                                                <constraint firstItem="6hf-5q-Nrh" firstAttribute="top" secondItem="lRG-EY-k7I" secondAttribute="top" constant="2" id="dSB-Ry-p2i"/>
+                                                <constraint firstAttribute="trailing" secondItem="cTV-fd-KwR" secondAttribute="trailing" constant="2" id="i0C-bi-6Fy"/>
+                                                <constraint firstItem="ObP-eB-WEW" firstAttribute="leading" secondItem="lRG-EY-k7I" secondAttribute="leading" constant="2" id="qYt-oi-3bQ"/>
+                                                <constraint firstItem="pef-bX-QHq" firstAttribute="leading" secondItem="6hf-5q-Nrh" secondAttribute="trailing" constant="2" id="sAk-Id-Cf0"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="DueDate" destination="pef-bX-QHq" id="5SO-qm-KIa"/>
+                                            <outlet property="DueDateLabel" destination="6hf-5q-Nrh" id="wyp-Bx-GaK"/>
+                                            <outlet property="JobReferenceNO" destination="ObP-eB-WEW" id="y11-Sc-muS"/>
+                                            <outlet property="StaffName" destination="ReJ-zN-XcU" id="iob-DC-0Rr"/>
+                                            <outlet property="TaskDetail" destination="cTV-fd-KwR" id="vS6-fH-Hju"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -98,6 +107,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" id="irk-qq-psq"/>
+                    <connections>
+                        <outlet property="taskListSearchBar" destination="VME-dK-Dyz" id="dqY-Y9-Y4r"/>
+                        <outlet property="taskListTableView" destination="5cb-hd-LKb" id="PjN-ZH-SWW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dlM-Jv-P5I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

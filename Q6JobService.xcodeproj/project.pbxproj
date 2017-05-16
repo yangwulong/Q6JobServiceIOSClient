@@ -10,6 +10,9 @@
 		1909F56D1EC17D73007DDE44 /* JobsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1909F56C1EC17D73007DDE44 /* JobsVC.swift */; };
 		1909F5711EC17E8C007DDE44 /* MainFunTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1909F5701EC17E8C007DDE44 /* MainFunTabVC.swift */; };
 		1909F5731EC18015007DDE44 /* SlideHorSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1909F5721EC18015007DDE44 /* SlideHorSegue.swift */; };
+		1915991A1EC91DC400B3BC3C /* TaskListTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191599191EC91DC400B3BC3C /* TaskListTabVC.swift */; };
+		1915991D1EC91EBA00B3BC3C /* TaskListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1915991C1EC91EBA00B3BC3C /* TaskListTableCell.swift */; };
+		1915991F1EC9218200B3BC3C /* LoginDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1915991E1EC9218200B3BC3C /* LoginDetail.swift */; };
 		1944FEF11EC3DAE80020F631 /* JobSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1944FEF01EC3DAE80020F631 /* JobSearchBar.swift */; };
 		1944FEF31EC40AB30020F631 /* TaskSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1944FEF21EC40AB30020F631 /* TaskSearchBar.swift */; };
 		196A44901EB960F100D8120C /* Q6JobServiceCommonLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196A448F1EB960F100D8120C /* Q6JobServiceCommonLibrary.swift */; };
@@ -28,6 +31,9 @@
 		1909F56C1EC17D73007DDE44 /* JobsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobsVC.swift; sourceTree = "<group>"; };
 		1909F5701EC17E8C007DDE44 /* MainFunTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFunTabVC.swift; sourceTree = "<group>"; };
 		1909F5721EC18015007DDE44 /* SlideHorSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideHorSegue.swift; sourceTree = "<group>"; };
+		191599191EC91DC400B3BC3C /* TaskListTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTabVC.swift; sourceTree = "<group>"; };
+		1915991C1EC91EBA00B3BC3C /* TaskListTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableCell.swift; sourceTree = "<group>"; };
+		1915991E1EC9218200B3BC3C /* LoginDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginDetail.swift; sourceTree = "<group>"; };
 		1944FEF01EC3DAE80020F631 /* JobSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobSearchBar.swift; sourceTree = "<group>"; };
 		1944FEF21EC40AB30020F631 /* TaskSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskSearchBar.swift; sourceTree = "<group>"; };
 		196A448F1EB960F100D8120C /* Q6JobServiceCommonLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q6JobServiceCommonLibrary.swift; sourceTree = "<group>"; };
@@ -59,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1915991B1EC91E9900B3BC3C /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				191599191EC91DC400B3BC3C /* TaskListTabVC.swift */,
+				1915991C1EC91EBA00B3BC3C /* TaskListTableCell.swift */,
+			);
+			name = Tasks;
+			sourceTree = "<group>";
+		};
 		1944FEEF1EC3DAB80020F631 /* Job */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +141,7 @@
 		1999B0861E91C97800913C24 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1915991E1EC9218200B3BC3C /* LoginDetail.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -133,6 +149,7 @@
 		1999B0871E91C98800913C24 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1915991B1EC91E9900B3BC3C /* Tasks */,
 				1909F5701EC17E8C007DDE44 /* MainFunTabVC.swift */,
 				196A448E1EB9603900D8120C /* Library */,
 				1999B0751E91C8EC00913C24 /* LoginVC.swift */,
@@ -283,9 +300,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1915991F1EC9218200B3BC3C /* LoginDetail.swift in Sources */,
 				1999B0761E91C8EC00913C24 /* LoginVC.swift in Sources */,
 				1944FEF31EC40AB30020F631 /* TaskSearchBar.swift in Sources */,
 				1909F5731EC18015007DDE44 /* SlideHorSegue.swift in Sources */,
+				1915991A1EC91DC400B3BC3C /* TaskListTabVC.swift in Sources */,
+				1915991D1EC91EBA00B3BC3C /* TaskListTableCell.swift in Sources */,
 				1999B0741E91C8EC00913C24 /* AppDelegate.swift in Sources */,
 				1944FEF11EC3DAE80020F631 /* JobSearchBar.swift in Sources */,
 				1909F5711EC17E8C007DDE44 /* MainFunTabVC.swift in Sources */,

@@ -118,6 +118,38 @@ class Q6JobServiceDBLibrary{
             
         }
     }
+    
+    static func getLoginDetailRow() ->LoginDetail
+    {
+        
+        var loginDetail = LoginDetail()
+        
+        do{
+            
+            let path = NSSearchPathForDirectoriesInDomains(
+                .documentDirectory, .userDomainMask, true
+                ).first!
+            
+            print(path)
+            let db = try Connection("\(path)/Q6JobServiceDB.sqlite3")
+            
+            let userLogin = Table("userLogin")
+            
+            let LoginEmail = Expression<String>("LoginEmail")
+            let LoginPassword = Expression<String>("LoginPassword")
+            
+            for userLogin in try db.prepare(userLogin.select(LoginEmail, LoginPassword)) {
+                loginDetail.LoginEmail = userLogin[LoginEmail]
+                loginDetail.LoginPassword = userLogin[LoginPassword]
+                print("id: \(userLogin[LoginEmail]), email: \(userLogin[LoginPassword])")
+                // id: 1, email: alice@mac.com
+            }
+            
+        }catch{
+            
+        }
+        return loginDetail
+    }
 }
 
 

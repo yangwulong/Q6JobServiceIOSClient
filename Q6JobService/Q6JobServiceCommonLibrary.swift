@@ -72,4 +72,41 @@ public class Q6JobServiceCommonLibrary
         return deviceID!
     
     }
+    
+    static func convertDictionaryToJSONData(dicData:[String:AnyObject])-> String
+    {
+        var returnString = ""
+        
+        do{
+            
+            let jsonData = try JSONSerialization.data(withJSONObject: dicData, options: [])
+            
+            let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+            returnString = jsonString
+            
+            //      print(jsonString)
+            //          returnString = jsonString.stringByReplacingOccurrencesOfString("\\",  withString:"")
+            //
+            //        print(returnString)
+        }catch{
+            
+        }
+        
+        
+        return returnString
+    }
+    
+    static func convertStringToDateStr(DateStr: String) ->String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //Your date format
+        let date = dateFormatter.date(from: DateStr)
+     
+        let myFormatter = DateFormatter()
+        myFormatter.dateStyle = .short
+        myFormatter.dateFormat = "dd/MM/yyyy"
+      let convertedDateStr =  myFormatter.string(from: date!)
+        return convertedDateStr
+        
+    }
 }
