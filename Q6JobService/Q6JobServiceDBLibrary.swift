@@ -122,7 +122,7 @@ class Q6JobServiceDBLibrary{
     static func getLoginDetailRow() ->LoginDetail
     {
         
-        var loginDetail = LoginDetail()
+        let loginDetail = LoginDetail()
         
         do{
             

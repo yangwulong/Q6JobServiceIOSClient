@@ -10,10 +10,14 @@ import UIKit
 
 class JobsVC: UIViewController {
 
+    @IBOutlet weak var JobListTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        JobListTableView.tableFooterView = UIView()
+
     }
 
     override func didReceiveMemoryWarning() {

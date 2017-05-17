@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g6m-d2-lv7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g6m-d2-lv7">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -207,7 +207,7 @@
         <!--Jobs-->
         <scene sceneID="Hfc-L3-VeG">
             <objects>
-                <viewController id="1FF-aM-HIj" sceneMemberID="viewController">
+                <viewController id="1FF-aM-HIj" customClass="JobsVC" customModule="Q6JobService" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="41U-Cr-0Ug"/>
                         <viewControllerLayoutGuide type="bottom" id="MrH-Rc-cR2"/>
@@ -327,6 +327,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Jobs" id="fjd-xn-EDp"/>
+                    <connections>
+                        <outlet property="JobListTableView" destination="BPA-KW-JAp" id="DR1-S6-dCg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uok-Wa-v4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

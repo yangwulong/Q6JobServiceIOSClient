@@ -40,6 +40,9 @@ class TaskListTabVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
         
         
         callTasklistByUserWebApi(ApiUrl: apiUrl)
+        
+        
+
     }
     
     func callTasklistByUserWebApi(ApiUrl:String)
@@ -124,9 +127,9 @@ class TaskListTabVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
         let dueDateStr = taskListData[indexPath.row]["JobTaskDueDate"].stringValue
         
         cell.DueDate.text = Q6JobServiceCommonLibrary.convertStringToDateStr(DateStr: dueDateStr)
-        cell.StaffName.text = taskListData[indexPath.row]["JobTaskAssignToUserName"].stringValue
+      //  cell.StaffName.text = taskListData[indexPath.row]["JobTaskAssignToUserName"].stringValue
         
-        cell.TaskDetail.text = taskListData[indexPath.row]["JobTaskDetail"].stringValue
+      //  cell.TaskDetail.text = taskListData[indexPath.row]["JobTaskDetail"].stringValue
         //        cell.lblContactID.isHidden = true
         //
         //
@@ -139,7 +142,7 @@ class TaskListTabVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 40
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

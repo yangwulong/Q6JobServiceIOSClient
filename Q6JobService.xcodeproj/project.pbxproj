@@ -13,6 +13,9 @@
 		1915991A1EC91DC400B3BC3C /* TaskListTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191599191EC91DC400B3BC3C /* TaskListTabVC.swift */; };
 		1915991D1EC91EBA00B3BC3C /* TaskListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1915991C1EC91EBA00B3BC3C /* TaskListTableCell.swift */; };
 		1915991F1EC9218200B3BC3C /* LoginDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1915991E1EC9218200B3BC3C /* LoginDetail.swift */; };
+		1921DDFE1ECBDDBD00B3F499 /* TaskListNavItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1921DDFD1ECBDDBD00B3F499 /* TaskListNavItem.swift */; };
+		1921DE001ECBDEDB00B3F499 /* TaskListNaviationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1921DDFF1ECBDEDB00B3F499 /* TaskListNaviationBar.swift */; };
+		1921DE021ECBFA2D00B3F499 /* TaskDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1921DE011ECBFA2D00B3F499 /* TaskDetailVC.swift */; };
 		1944FEF11EC3DAE80020F631 /* JobSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1944FEF01EC3DAE80020F631 /* JobSearchBar.swift */; };
 		1944FEF31EC40AB30020F631 /* TaskSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1944FEF21EC40AB30020F631 /* TaskSearchBar.swift */; };
 		196A44901EB960F100D8120C /* Q6JobServiceCommonLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196A448F1EB960F100D8120C /* Q6JobServiceCommonLibrary.swift */; };
@@ -34,6 +37,9 @@
 		191599191EC91DC400B3BC3C /* TaskListTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTabVC.swift; sourceTree = "<group>"; };
 		1915991C1EC91EBA00B3BC3C /* TaskListTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableCell.swift; sourceTree = "<group>"; };
 		1915991E1EC9218200B3BC3C /* LoginDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginDetail.swift; sourceTree = "<group>"; };
+		1921DDFD1ECBDDBD00B3F499 /* TaskListNavItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListNavItem.swift; sourceTree = "<group>"; };
+		1921DDFF1ECBDEDB00B3F499 /* TaskListNaviationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListNaviationBar.swift; sourceTree = "<group>"; };
+		1921DE011ECBFA2D00B3F499 /* TaskDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailVC.swift; sourceTree = "<group>"; };
 		1944FEF01EC3DAE80020F631 /* JobSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobSearchBar.swift; sourceTree = "<group>"; };
 		1944FEF21EC40AB30020F631 /* TaskSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskSearchBar.swift; sourceTree = "<group>"; };
 		196A448F1EB960F100D8120C /* Q6JobServiceCommonLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Q6JobServiceCommonLibrary.swift; sourceTree = "<group>"; };
@@ -70,8 +76,18 @@
 			children = (
 				191599191EC91DC400B3BC3C /* TaskListTabVC.swift */,
 				1915991C1EC91EBA00B3BC3C /* TaskListTableCell.swift */,
+				1921DE011ECBFA2D00B3F499 /* TaskDetailVC.swift */,
 			);
 			name = Tasks;
+			sourceTree = "<group>";
+		};
+		1921DDF81ECBDB2000B3F499 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				1921DDFD1ECBDDBD00B3F499 /* TaskListNavItem.swift */,
+				1921DDFF1ECBDEDB00B3F499 /* TaskListNaviationBar.swift */,
+			);
+			name = Task;
 			sourceTree = "<group>";
 		};
 		1944FEEF1EC3DAB80020F631 /* Job */ = {
@@ -130,6 +146,7 @@
 		1999B0851E91C96C00913C24 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1921DDF81ECBDB2000B3F499 /* Task */,
 				1944FEEF1EC3DAB80020F631 /* Job */,
 				1999B0771E91C8EC00913C24 /* Main.storyboard */,
 				19F519C71EC2E175006EC7A0 /* Tasks.storyboard */,
@@ -300,13 +317,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1921DE001ECBDEDB00B3F499 /* TaskListNaviationBar.swift in Sources */,
 				1915991F1EC9218200B3BC3C /* LoginDetail.swift in Sources */,
 				1999B0761E91C8EC00913C24 /* LoginVC.swift in Sources */,
 				1944FEF31EC40AB30020F631 /* TaskSearchBar.swift in Sources */,
 				1909F5731EC18015007DDE44 /* SlideHorSegue.swift in Sources */,
+				1921DE021ECBFA2D00B3F499 /* TaskDetailVC.swift in Sources */,
 				1915991A1EC91DC400B3BC3C /* TaskListTabVC.swift in Sources */,
 				1915991D1EC91EBA00B3BC3C /* TaskListTableCell.swift in Sources */,
 				1999B0741E91C8EC00913C24 /* AppDelegate.swift in Sources */,
+				1921DDFE1ECBDDBD00B3F499 /* TaskListNavItem.swift in Sources */,
 				1944FEF11EC3DAE80020F631 /* JobSearchBar.swift in Sources */,
 				1909F5711EC17E8C007DDE44 /* MainFunTabVC.swift in Sources */,
 				19F5197C1EC2B918006EC7A0 /* Q6JobServiceDBLibrary.swift in Sources */,
