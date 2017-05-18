@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1909F56D1EC17D73007DDE44 /* JobsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1909F56C1EC17D73007DDE44 /* JobsVC.swift */; };
+		1909F56D1EC17D73007DDE44 /* JobListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1909F56C1EC17D73007DDE44 /* JobListVC.swift */; };
 		1909F5711EC17E8C007DDE44 /* MainFunTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1909F5701EC17E8C007DDE44 /* MainFunTabVC.swift */; };
 		1909F5731EC18015007DDE44 /* SlideHorSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1909F5721EC18015007DDE44 /* SlideHorSegue.swift */; };
 		1915991A1EC91DC400B3BC3C /* TaskListTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191599191EC91DC400B3BC3C /* TaskListTabVC.swift */; };
@@ -31,7 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1909F56C1EC17D73007DDE44 /* JobsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobsVC.swift; sourceTree = "<group>"; };
+		1909F56C1EC17D73007DDE44 /* JobListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobListVC.swift; sourceTree = "<group>"; };
 		1909F5701EC17E8C007DDE44 /* MainFunTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFunTabVC.swift; sourceTree = "<group>"; };
 		1909F5721EC18015007DDE44 /* SlideHorSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideHorSegue.swift; sourceTree = "<group>"; };
 		191599191EC91DC400B3BC3C /* TaskListTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTabVC.swift; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 			children = (
 				196A448F1EB960F100D8120C /* Q6JobServiceCommonLibrary.swift */,
 				196A44911EB9634D00D8120C /* Q6JobService-Bridging-Header.h */,
-				1909F56C1EC17D73007DDE44 /* JobsVC.swift */,
+				1909F56C1EC17D73007DDE44 /* JobListVC.swift */,
 				19F5197B1EC2B918006EC7A0 /* Q6JobServiceDBLibrary.swift */,
 			);
 			name = Library;
@@ -330,7 +330,7 @@
 				1944FEF11EC3DAE80020F631 /* JobSearchBar.swift in Sources */,
 				1909F5711EC17E8C007DDE44 /* MainFunTabVC.swift in Sources */,
 				19F5197C1EC2B918006EC7A0 /* Q6JobServiceDBLibrary.swift in Sources */,
-				1909F56D1EC17D73007DDE44 /* JobsVC.swift in Sources */,
+				1909F56D1EC17D73007DDE44 /* JobListVC.swift in Sources */,
 				196A44901EB960F100D8120C /* Q6JobServiceCommonLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MapKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,12 +20,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Q6JobServiceDBLibrary.createDB()
         Q6JobServiceDBLibrary.createUserLoginTable()
         
+        
+//        var locManager = CLLocationManager()
+//        locManager.requestWhenInUseAuthorization()
+//        
+//        var currentLocation: CLLocation!
+//        
+//        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+//            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+//            
+//            currentLocation = locManager.location
+//            
+//        }
+        
         if Q6JobServiceDBLibrary.VerifyHasDataInUserLoginTable()
         {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let mainFunTabVC = storyBoard.instantiateViewController(withIdentifier: "MainFunTabVC") as! MainFunTabVC
         self.window?.rootViewController = mainFunTabVC
         }
+        
+   
         return true
             
     }

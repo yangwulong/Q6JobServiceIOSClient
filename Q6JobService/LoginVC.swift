@@ -9,7 +9,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-class LoginVC: UIViewController ,UITextFieldDelegate{
+import CoreLocation
+class LoginVC: UIViewController ,UITextFieldDelegate,CLLocationManagerDelegate{
 
     var activeField: UITextField?
     @IBOutlet weak var scrollView: UIScrollView!
@@ -17,15 +18,24 @@ class LoginVC: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var txtLoginEmail: UITextField!
     
     @IBOutlet weak var txtLoginPassword: UITextField!
-    
+    var locationManager: CLLocationManager = CLLocationManager()
+    var startLocation: CLLocation!
     override func viewWillAppear(_ animated: Bool) {
         registerForKeyboardNotifications()
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        startLocation = nil
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
        
     print("deviceID" +  Q6JobServiceCommonLibrary.getMobileDeviceToken())
+        
+   
     }
 
     override open func viewWillDisappear(_ animated: Bool) {

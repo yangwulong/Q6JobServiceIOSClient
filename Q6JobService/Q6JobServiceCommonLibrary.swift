@@ -10,6 +10,7 @@ import Foundation
 import LocalAuthentication
 import UIKit
 import SystemConfiguration
+import MapKit
 public class Q6JobServiceCommonLibrary
 {
     
@@ -108,5 +109,30 @@ public class Q6JobServiceCommonLibrary
       let convertedDateStr =  myFormatter.string(from: date!)
         return convertedDateStr
         
+    }
+    static func getCurrentLocation()->(Double?,Double?)
+    {
+        let locManager = CLLocationManager()
+        var currentLocation: CLLocation?
+        
+        
+        if CLLocationManager.authorizationStatus() == .authorizedAlways
+        {
+            currentLocation = locManager.location
+     print( " .authorizedaways")
+        }else{
+           
+            print("request  authorized")
+            locManager.requestWhenInUseAuthorization()
+            locManager.requestAlwaysAuthorization()
+        }
+        if currentLocation != nil
+        {
+        return (currentLocation!.coordinate.longitude,currentLocation!.coordinate.latitude)
+        }
+        else{
+            return (0,0)
+        }
+    
     }
 }

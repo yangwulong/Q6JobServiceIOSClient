@@ -207,7 +207,7 @@
         <!--Jobs-->
         <scene sceneID="Hfc-L3-VeG">
             <objects>
-                <viewController id="1FF-aM-HIj" customClass="JobsVC" customModule="Q6JobService" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1FF-aM-HIj" customClass="JobListVC" customModule="Q6JobService" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="41U-Cr-0Ug"/>
                         <viewControllerLayoutGuide type="bottom" id="MrH-Rc-cR2"/>

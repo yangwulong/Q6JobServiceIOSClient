@@ -38,7 +38,7 @@ class TaskListTabVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
         byEmail = loginDetail.LoginEmail!
         let apiUrl = getTasklistByUserUrl(loginDetail: loginDetail, byEmail: byEmail, searchText:"", isCompleted: isCompleted)
         
-        
+        print(apiUrl)
         callTasklistByUserWebApi(ApiUrl: apiUrl)
         
         
