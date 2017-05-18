@@ -135,4 +135,31 @@ public class Q6JobServiceCommonLibrary
         }
     
     }
+    
+     static func q6UIAlertPopupController(title: String?,message:String?,viewController: AnyObject?)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        viewController!.present(alert, animated: true, completion: nil)
+        
+        
+        let delayTime = DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        
+        
+        
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: delayTime)
+        {
+            
+            
+            if  viewController != nil  {
+                viewController?.dismiss(animated: true, completion: nil)
+            }
+            
+            
+          
+        }
+        
+     
+    }
 }

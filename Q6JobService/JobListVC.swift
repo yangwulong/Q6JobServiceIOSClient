@@ -15,6 +15,8 @@ class JobListVC: UIViewController {
     //var taskListData = JSON("")
     var byEmail:String = ""
     var isCompleted = "NO"
+    var jobListData:[JobListData] = [JobListData]()
+    var loginDetail:LoginDetail = LoginDetail()
     @IBOutlet weak var JobListTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,19 +24,24 @@ class JobListVC: UIViewController {
         // Do any additional setup after loading the view.
         
         JobListTableView.tableFooterView = UIView()
-        
         let loginDetail =   Q6JobServiceDBLibrary.getLoginDetailRow()
+//        do{
+//            
+//        }while
+//        let loginDetail =   Q6JobServiceDBLibrary.getLoginDetailRow()
         byEmail = loginDetail.LoginEmail!
-        
-let CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
-    let longitude = (String)(CurrentLocation.0! )
-    let latitude =  (String)(CurrentLocation.1! )
-        
-        let APIURL = getStaffScheduledJobList(loginDetail: loginDetail, ByEmail: byEmail, SearchText: "", longitude: longitude, latitude: latitude, JobType: "All", JobStatus: "Open", IsJobCompleted: "NO")
-        
-            
-            print(APIURL)
-        callGetStaffScheduledJobListWebApi(ApiUrl: APIURL)
+//
+//let CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
+//    let longitude = (String)(CurrentLocation.0! )
+//    let latitude =  (String)(CurrentLocation.1! )
+//        
+//        
+//        //need to change invoice to All
+//        let APIURL = getStaffScheduledJobList(loginDetail: loginDetail, ByEmail: byEmail, SearchText: "", longitude: longitude, latitude: latitude, JobType: "All", JobStatus: "Open", IsJobCompleted: "NO")
+//        
+//            
+//            print(APIURL)
+//        callGetStaffScheduledJobListWebApi(ApiUrl: APIURL)
     }
 
 //https://jobapi.q6.com.au/api/Job/GetStaffScheduledJobList?Jsonlogin={"LoginName":"yange%40uniware.com.au","ClientIP":null,"Password":"richman58.","MobileDeviceToken":null,"WebApiTOKEN":"91561308-b547-4b4e-8289-d5f0b23f0037"}&byEmail=yange@uniware.com.au&longitude=145.17805780000003&latitude=-37.8196608&SearchText=&JobType=Invoice&JobStatus=Open&IsJobCompleted=NO

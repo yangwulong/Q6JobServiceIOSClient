@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import CoreLocation
 class LoginVC: UIViewController ,UITextFieldDelegate,CLLocationManagerDelegate{
-
+    
     var activeField: UITextField?
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -32,12 +32,12 @@ class LoginVC: UIViewController ,UITextFieldDelegate,CLLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-       
-    print("deviceID" +  Q6JobServiceCommonLibrary.getMobileDeviceToken())
         
-   
+        print("deviceID" +  Q6JobServiceCommonLibrary.getMobileDeviceToken())
+        
+        
     }
-
+    
     override open func viewWillDisappear(_ animated: Bool) {
         deregisterFromKeyboardNotifications()
     }
@@ -54,49 +54,64 @@ class LoginVC: UIViewController ,UITextFieldDelegate,CLLocationManagerDelegate{
         
     }
     
-
+    
     @IBAction func SignInBtnClick(_ sender: Any) {
         
-       if verifyUserInput()
-       {
-         let APIURL = Q6JobServiceCommonLibrary.q6WebApiUrl + "Q6/UserLogin"
-        
-        print(APIURL)
-       // var parameters: Parameters = ["foo": "bar"]
-        
-        var parameters = Parameters()
-        parameters["WebApiTOKEN"] = Q6JobServiceCommonLibrary.q6WebApiTOKEN
-        parameters["LoginName"] = txtLoginEmail.text
-        parameters["Password"] = txtLoginPassword.text
-        parameters["ClientIP"] = Q6JobServiceCommonLibrary.getIPAddresses()
-        parameters["MobileDeviceToken"] = Q6JobServiceCommonLibrary.getMobileDeviceToken()
-        Alamofire.request(APIURL,method: .post,parameters: parameters).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-           
-                    let swiftyJsonVar = JSON(value)
-                    
-                    let date = Date()
-                    print(date.description)
-                    
-                    print(parameters["LoginName"] as! String)
-                    Q6JobServiceDBLibrary.insertUserLoginrow(_LoginEmail:parameters["LoginName"] as! String,_LoginPassword:parameters["Password"] as! String,_WebApiToken:parameters["WebApiTOKEN"] as! String, _LoginDateTime:date.description,_MobileDeviceToken:parameters["MobileDeviceToken"] as! String)
+        if verifyUserInput()
+        {
+            let APIURL = Q6JobServiceCommonLibrary.q6WebApiUrl + "Q6/UserLogin"
             
-            case .failure(let error):
-                print(error)
+            print(APIURL)
+            // var parameters: Parameters = ["foo": "bar"]
+            
+            var parameters = Parameters()
+            parameters["WebApiTOKEN"] = Q6JobServiceCommonLibrary.q6WebApiTOKEN
+            parameters["LoginName"] = txtLoginEmail.text
+            parameters["Password"] = txtLoginPassword.text
+            parameters["ClientIP"] = Q6JobServiceCommonLibrary.getIPAddresses()
+            parameters["MobileDeviceToken"] = Q6JobServiceCommonLibrary.getMobileDeviceToken()
+            Alamofire.request(APIURL,method: .post,parameters: parameters).validate().responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    
+                    let swiftyJsonVar = JSON(value)
+                    print(swiftyJsonVar)
+                    let isSuccessed = swiftyJsonVar["IsSuccessed"].boolValue
+                    
+                    if isSuccessed == true {
+                        
+                        
+                        let date = Date()
+                        print(date.description)
+                        
+                        print(parameters["LoginName"] as! String)
+                        Q6JobServiceDBLibrary.insertUserLoginrow(_LoginEmail:parameters["LoginName"] as! String,_LoginPassword:parameters["Password"] as! String,_WebApiToken:parameters["WebApiTOKEN"] as! String, _LoginDateTime:date.description,_MobileDeviceToken:parameters["MobileDeviceToken"] as! String)
+                        
+                        
+                        
+                        if let mainFunTabVC = self.storyboard!.instantiateViewController(withIdentifier: "MainFunTabVC") as? MainFunTabVC {
+                            
+                            self.present(mainFunTabVC, animated: true, completion: nil)
+                        }
+                    }else {
+                        Q6JobServiceCommonLibrary.q6UIAlertPopupController(title: "Information Message", message: swiftyJsonVar["ErrorMessage"].stringValue, viewController: self)
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
-        }
-       else{
-        
+        else{
+            
         }
     }
     
     func verifyUserInput() ->Bool {
         
-         let loginEmail = txtLoginEmail.text
-         let passWord = txtLoginPassword.text
-       return Q6JobServiceCommonLibrary.isEmailAddressValid(email: loginEmail!)&&(passWord!.isEmpty == false)
+        let loginEmail = txtLoginEmail.text
+        let passWord = txtLoginPassword.text
+        return Q6JobServiceCommonLibrary.isEmailAddressValid(email: loginEmail!)&&(passWord!.isEmpty == false)
         
     }
     func registerForKeyboardNotifications()
@@ -167,6 +182,7 @@ class LoginVC: UIViewController ,UITextFieldDelegate,CLLocationManagerDelegate{
     {
         activeField = nil
     }
-
+    
+    
 }
 

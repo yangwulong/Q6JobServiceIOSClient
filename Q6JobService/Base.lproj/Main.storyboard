@@ -131,7 +131,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="SignInBtnClick:" destination="g6m-d2-lv7" eventType="touchUpInside" id="g3g-us-oFb"/>
-                                                    <segue destination="enb-qu-MHW" kind="show" id="tcx-rv-UhC"/>
                                                 </connections>
                                             </button>
                                         </subviews>
