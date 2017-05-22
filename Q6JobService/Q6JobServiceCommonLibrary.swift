@@ -160,6 +160,30 @@ public class Q6JobServiceCommonLibrary
           
         }
         
+        
+        
      
+    }
+    
+    static func splitRBGValue(RGBString: String?) -> (Double,Double,Double) {
+        
+        var red: Double = 0.0
+        var blue: Double = 0.0
+        var green: Double = 0.0
+        if RGBString != nil {
+            
+            if RGBString!.characters.count > 0
+            {
+                
+                let parts = RGBString!.components(separatedBy: ",")
+                
+                red =  Double (parts[0])!
+                blue =  Double (parts[1])!
+                green =  Double (parts[2])!
+                
+            }
+        }
+        
+        return (red,blue,green)
     }
 }

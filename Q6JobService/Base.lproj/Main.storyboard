@@ -133,6 +133,9 @@
                                                     <action selector="SignInBtnClick:" destination="g6m-d2-lv7" eventType="touchUpInside" id="g3g-us-oFb"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FGs-WL-U1P">
+                                                <rect key="frame" x="197" y="358" width="20" height="20"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.96852236986160278" green="0.96868795156478882" blue="0.96851199865341187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <gestureRecognizers/>
@@ -146,6 +149,7 @@
                                                 <variation key="heightClass=compact-widthClass=compact" constant="2"/>
                                                 <variation key="heightClass=regular-widthClass=regular" constant="100"/>
                                             </constraint>
+                                            <constraint firstItem="FGs-WL-U1P" firstAttribute="centerX" secondItem="Taw-wA-8OS" secondAttribute="centerX" id="Cfm-Fn-Jhh"/>
                                             <constraint firstItem="97C-Mr-I94" firstAttribute="centerX" secondItem="Taw-wA-8OS" secondAttribute="centerX" id="FXt-ER-F1n"/>
                                             <constraint firstItem="Ccj-6D-Jq0" firstAttribute="top" secondItem="97C-Mr-I94" secondAttribute="bottom" constant="8" id="HEQ-lC-k2c"/>
                                             <constraint firstItem="jsJ-oJ-lDf" firstAttribute="centerX" secondItem="Taw-wA-8OS" secondAttribute="centerX" id="Hpw-jq-hAx"/>
@@ -157,6 +161,7 @@
                                             <constraint firstItem="9AS-qw-l3P" firstAttribute="top" secondItem="sBm-FI-Lyf" secondAttribute="bottom" constant="40" id="lkO-e8-beB">
                                                 <variation key="heightClass=compact-widthClass=compact" constant="10"/>
                                             </constraint>
+                                            <constraint firstItem="FGs-WL-U1P" firstAttribute="centerY" secondItem="Taw-wA-8OS" secondAttribute="centerY" id="rsN-PZ-jdx"/>
                                             <constraint firstItem="sBm-FI-Lyf" firstAttribute="centerX" secondItem="Taw-wA-8OS" secondAttribute="centerX" id="u0V-DQ-0eU"/>
                                             <constraint firstItem="YfO-aw-vfQ" firstAttribute="width" secondItem="7dr-tq-AW6" secondAttribute="width" multiplier="1.1" id="xbQ-Na-7iG"/>
                                             <constraint firstItem="YfO-aw-vfQ" firstAttribute="top" secondItem="jsJ-oJ-lDf" secondAttribute="bottom" constant="20" id="y2i-4N-Z9g"/>
@@ -189,6 +194,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="1s2-rA-vx7"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="FGs-WL-U1P" id="Ana-9B-4bX"/>
                         <outlet property="scrollView" destination="Bi8-rA-tfg" id="ut5-fk-BG3"/>
                         <outlet property="txtLoginEmail" destination="T7U-XO-cuF" id="uCb-Yt-WT8"/>
                         <outlet property="txtLoginPassword" destination="lKz-6A-M9q" id="joV-Mr-Ity"/>
@@ -224,7 +230,7 @@
                                 <rect key="frame" x="20" y="122" width="374" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="IwZ-Qr-vL2">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="JobListTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="JobListTableViewCell" rowHeight="80" id="IwZ-Qr-vL2" customClass="JobListTableViewCell" customModule="Q6JobService" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IwZ-Qr-vL2" id="xRS-dO-FOi">
@@ -233,7 +239,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzM-wN-FRo">
                                                     <rect key="frame" x="2" y="0.0" width="5" height="79.666666666666671"/>
-                                                    <color key="backgroundColor" red="0.48627450980392156" green="0.9882352941176471" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="rEh-RK-R1V"/>
                                                     </constraints>
@@ -310,6 +316,10 @@
                                                 <constraint firstItem="ZCR-0N-o7d" firstAttribute="top" secondItem="xRS-dO-FOi" secondAttribute="top" id="y8H-vt-PgT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="CustomerName" destination="jLD-xw-gXo" id="hSm-Sk-2xq"/>
+                                            <outlet property="JobTypeColorLabel" destination="rzM-wN-FRo" id="onE-h1-iYD"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -328,6 +338,7 @@
                     <navigationItem key="navigationItem" title="Jobs" id="fjd-xn-EDp"/>
                     <connections>
                         <outlet property="JobListTableView" destination="BPA-KW-JAp" id="DR1-S6-dCg"/>
+                        <outlet property="jobListDataTableView" destination="BPA-KW-JAp" id="VP3-2e-T3l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uok-Wa-v4n" userLabel="First Responder" sceneMemberID="firstResponder"/>

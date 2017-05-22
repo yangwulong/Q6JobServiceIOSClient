@@ -12,6 +12,7 @@ import SwiftyJSON
 import CoreLocation
 class LoginVC: UIViewController ,UITextFieldDelegate,CLLocationManagerDelegate{
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var activeField: UITextField?
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -35,7 +36,8 @@ class LoginVC: UIViewController ,UITextFieldDelegate,CLLocationManagerDelegate{
         
         print("deviceID" +  Q6JobServiceCommonLibrary.getMobileDeviceToken())
         
-        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.stopAnimating()
     }
     
     override open func viewWillDisappear(_ animated: Bool) {
@@ -59,6 +61,7 @@ class LoginVC: UIViewController ,UITextFieldDelegate,CLLocationManagerDelegate{
         
         if verifyUserInput()
         {
+            activityIndicator.startAnimating()
             let APIURL = Q6JobServiceCommonLibrary.q6WebApiUrl + "Q6/UserLogin"
             
             print(APIURL)
@@ -94,6 +97,7 @@ class LoginVC: UIViewController ,UITextFieldDelegate,CLLocationManagerDelegate{
                             self.present(mainFunTabVC, animated: true, completion: nil)
                         }
                     }else {
+                        self.activityIndicator.stopAnimating()
                         Q6JobServiceCommonLibrary.q6UIAlertPopupController(title: "Information Message", message: swiftyJsonVar["ErrorMessage"].stringValue, viewController: self)
                     }
                     

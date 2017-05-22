@@ -18,6 +18,7 @@ public class JobListData
     var JobCountry:String?
     var JobID:String?
     var JobAddressLine2:String?
+    var JobCity:String?
     var LocalScheduleDate:String?
     var JobType:String?
     var DriveMinutes:String?
@@ -28,7 +29,8 @@ public class JobListData
     var JobPostalCode:String?
     var JobContactMobile:String?
     var JobState:String?
-    
+    var ClientName:String?
+    var ClientID:String?
     var DriveDistance:String?
     var ReferenceNo:String?
     var LocalWeekDay:String?
