@@ -20,8 +20,8 @@ class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIS
     var isCompleted = "NO"
     var jobListData:[JobListData] = [JobListData]()
     var loginDetail:LoginDetail = LoginDetail()
- var longitude = String()
- var latitude = String()
+    var longitude = String()
+    var latitude = String()
     var JobType = "All"
     var JobStatus = "Open"
     var CurrentLocation:(Double?,Double?)
@@ -32,16 +32,16 @@ class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIS
         
         jobListDataTableView.delegate = self
         jobListDataTableView.dataSource = self
-       jobListSearchBar.delegate = self
+        jobListSearchBar.delegate = self
         
         // Do any additional setup after loading the view.
         
         JobListTableView.tableFooterView = UIView()
-       loginDetail =   Q6JobServiceDBLibrary.getLoginDetailRow()
-      byEmail = loginDetail.LoginEmail!
+        loginDetail =   Q6JobServiceDBLibrary.getLoginDetailRow()
+        byEmail = loginDetail.LoginEmail!
         //
-       CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
-       longitude = (String)(CurrentLocation.0! )
+        CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
+        longitude = (String)(CurrentLocation.0! )
         latitude =  (String)(CurrentLocation.1! )
         //
         //
@@ -49,7 +49,7 @@ class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIS
         let APIURL = getStaffScheduledJobList(loginDetail: loginDetail, ByEmail: byEmail, SearchText: "", longitude: longitude, latitude: latitude, JobType: JobType, JobStatus: JobStatus, IsJobCompleted: IsJobCompleted)
         //
         //
-                print(APIURL)
+        print(APIURL)
         callGetStaffScheduledJobListWebApi(ApiUrl: APIURL)
         
         activityIndicator.hidesWhenStopped = true
@@ -231,7 +231,7 @@ class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIS
         let JobAddressLine2 = jobListData[indexPath.row].JobAddressLine2 == nil ? "" : jobListData[indexPath.row].JobAddressLine2!
         let JobAddressCity = jobListData[indexPath.row].JobCity == nil ? "" : jobListData[indexPath.row].JobCity!
         
-     
+        
         cell.AddressLine1.text = JobAddress + " " + JobAddressLine2 + " " + JobAddressCity
         
         //Setup AddressLine2
@@ -255,10 +255,12 @@ class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIS
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         callJoblistByUserWebApiFromSearchBar()
+        jobListSearchBar.resignFirstResponder()
     }
     func searchBarSearchButtonClicked( _ searchBar: UISearchBar)
     {
         callJoblistByUserWebApiFromSearchBar()
+        jobListSearchBar.resignFirstResponder()
     }
     
     func callJoblistByUserWebApiFromSearchBar(){
@@ -273,7 +275,7 @@ class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIS
             byEmail = loginDetail.LoginEmail!
             let APIURL = getStaffScheduledJobList(loginDetail: loginDetail, ByEmail: byEmail, SearchText: searchBarText!, longitude: longitude, latitude: latitude, JobType: JobType, JobStatus: JobStatus, IsJobCompleted: IsJobCompleted)
             
-             callGetStaffScheduledJobListWebApi(ApiUrl: APIURL)
+            callGetStaffScheduledJobListWebApi(ApiUrl: APIURL)
         }
     }
 }
