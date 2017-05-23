@@ -9,8 +9,10 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
-
+class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
+    
+    @IBOutlet weak var jobListSearchBar: JobSearchBar!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var jobListDataTableView: UITableView!
     var attachedURL = String()
     //var taskListData = JSON("")
@@ -18,37 +20,43 @@ class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
     var isCompleted = "NO"
     var jobListData:[JobListData] = [JobListData]()
     var loginDetail:LoginDetail = LoginDetail()
+ var longitude = String()
+ var latitude = String()
+    var JobType = "All"
+    var JobStatus = "Open"
+    var CurrentLocation:(Double?,Double?)
+    var IsJobCompleted = "NO"
     @IBOutlet weak var JobListTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         jobListDataTableView.delegate = self
         jobListDataTableView.dataSource = self
+       jobListSearchBar.delegate = self
         
         // Do any additional setup after loading the view.
         
         JobListTableView.tableFooterView = UIView()
-        let loginDetail =   Q6JobServiceDBLibrary.getLoginDetailRow()
-//        do{
-//            
-//        }while
-//        let loginDetail =   Q6JobServiceDBLibrary.getLoginDetailRow()
-        byEmail = loginDetail.LoginEmail!
-//
-let CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
-    let longitude = (String)(CurrentLocation.0! )
-    let latitude =  (String)(CurrentLocation.1! )
-//
-//        
-//        //need to change invoice to All
-        let APIURL = getStaffScheduledJobList(loginDetail: loginDetail, ByEmail: byEmail, SearchText: "", longitude: longitude, latitude: latitude, JobType: "All", JobStatus: "Open", IsJobCompleted: "NO")
-//
-//            
-//            print(APIURL)
-       callGetStaffScheduledJobListWebApi(ApiUrl: APIURL)
+       loginDetail =   Q6JobServiceDBLibrary.getLoginDetailRow()
+      byEmail = loginDetail.LoginEmail!
+        //
+       CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
+       longitude = (String)(CurrentLocation.0! )
+        latitude =  (String)(CurrentLocation.1! )
+        //
+        //
+        //        //need to change invoice to All
+        let APIURL = getStaffScheduledJobList(loginDetail: loginDetail, ByEmail: byEmail, SearchText: "", longitude: longitude, latitude: latitude, JobType: JobType, JobStatus: JobStatus, IsJobCompleted: IsJobCompleted)
+        //
+        //
+                print(APIURL)
+        callGetStaffScheduledJobListWebApi(ApiUrl: APIURL)
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
     }
-
-//https://jobapi.q6.com.au/api/Job/GetStaffScheduledJobList?Jsonlogin={"LoginName":"yange%40uniware.com.au","ClientIP":null,"Password":"richman58.","MobileDeviceToken":null,"WebApiTOKEN":"91561308-b547-4b4e-8289-d5f0b23f0037"}&byEmail=yange@uniware.com.au&longitude=145.17805780000003&latitude=-37.8196608&SearchText=&JobType=Invoice&JobStatus=Open&IsJobCompleted=NO
+    
+    //https://jobapi.q6.com.au/api/Job/GetStaffScheduledJobList?Jsonlogin={"LoginName":"yange%40uniware.com.au","ClientIP":null,"Password":"richman58.","MobileDeviceToken":null,"WebApiTOKEN":"91561308-b547-4b4e-8289-d5f0b23f0037"}&byEmail=yange@uniware.com.au&longitude=145.17805780000003&latitude=-37.8196608&SearchText=&JobType=Invoice&JobStatus=Open&IsJobCompleted=NO
     func getStaffScheduledJobList(loginDetail: LoginDetail,ByEmail: String , SearchText:String,longitude:String,latitude:String,JobType:String,JobStatus:String,IsJobCompleted:String ) -> String{
         
         let _baseWebApiUrl = Q6JobServiceCommonLibrary.q6WebApiUrl
@@ -81,7 +89,7 @@ let CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
         return replacedApiUrl
     }
     
-  //https://jobapi.q6.com.au/api/Job/GetStaffScheduledJobList?Jsonlogin={"LoginName":"yange%40uniware.com.au","ClientIP":null,"Password":"richman58.","MobileDeviceToken":null,"WebApiTOKEN":"91561308-b547-4b4e-8289-d5f0b23f0037"}&byEmail=yange@uniware.com.au&longitude=145.17805780000003&latitude=-37.8196608&SearchText=&JobType=Invoice&JobStatus=Open&IsJobCompleted=NO
+    //https://jobapi.q6.com.au/api/Job/GetStaffScheduledJobList?Jsonlogin={"LoginName":"yange%40uniware.com.au","ClientIP":null,"Password":"richman58.","MobileDeviceToken":null,"WebApiTOKEN":"91561308-b547-4b4e-8289-d5f0b23f0037"}&byEmail=yange@uniware.com.au&longitude=145.17805780000003&latitude=-37.8196608&SearchText=&JobType=Invoice&JobStatus=Open&IsJobCompleted=NO
     
     func setAttachedURL(ByEmail: String , SearchText:String,Longitude:String,Latitude:String,JobType:String,JobStatus:String,IsJobCompleted:String )
     {
@@ -97,15 +105,15 @@ let CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
             case .success(let value):
                 
                 let swiftyJsonVar = JSON(value)
-//                let resultsArray = swiftyJsonVar.arrayValue
-//                
-//                let sortedResults = resultsArray.sorted { $0["JobTaskDueDate"].doubleValue < $1["JobTaskDueDate"].doubleValue }
-//                
-//                self.taskListData = JSON(sortedResults)
-//                self.taskListTableView.reloadData()
-              self.convertJsonToJobListDataArray(Json:swiftyJsonVar)
+                //                let resultsArray = swiftyJsonVar.arrayValue
+                //
+                //                let sortedResults = resultsArray.sorted { $0["JobTaskDueDate"].doubleValue < $1["JobTaskDueDate"].doubleValue }
+                //
+                //                self.taskListData = JSON(sortedResults)
+                //                self.taskListTableView.reloadData()
+                self.convertJsonToJobListDataArray(Json:swiftyJsonVar)
                 
-               
+                
                 print(self.jobListData)
             case .failure(let error):
                 print(error)
@@ -123,31 +131,31 @@ let CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
         if Json.count > 0 && Json.null == nil{
             
             for  i in 0 ..< Json.count
-                {
-                    let jobData = JobListData()
-                   jobData.JobTypeColorName = Json[i]["JobTypeColorName"].stringValue
-                    jobData.UserID = Json[i]["UserID"].stringValue
-                    jobData.JobCategoryColorRGBValue = Json[i]["JobCategoryColorRGBValue"].stringValue
-                    jobData.JobAddress = Json[i]["JobAddress"].stringValue
-                    jobData.JobID = Json[i]["JobID"].stringValue
-                    jobData.JobCity = Json[i]["JobCity"].stringValue
-                    jobData.LocalScheduleDate = Json[i]["LocalScheduleDate"].stringValue
-                    jobData.JobType = Json[i]["JobType"].stringValue
-                    jobData.DriveMinutes = Json[i]["DriveMinutes"].stringValue
-                    jobData.JobTypeColorRGBValue = Json[i]["JobTypeColorRGBValue"].stringValue
-                    jobData.JobTypeColorHexValue = Json[i]["JobTypeColorHexValue"].stringValue
-                    jobData.LocalScheduleTime = Json[i]["LocalScheduleTime"].stringValue
-                    jobData.JobCategoryColorHEXValue = Json[i]["JobCategoryColorHEXValue"].stringValue
-                    jobData.JobPostalCode = Json[i]["JobPostalCode"].stringValue
-                    
-                    jobData.JobContactMobile = Json[i]["JobContactMobile"].stringValue
-                    jobData.JobState = Json[i]["JobState"].stringValue
-                    jobData.DriveDistance = Json[i]["DriveDistance"].stringValue
-                    jobData.ReferenceNo = Json[i]["ReferenceNo"].stringValue
-                    jobData.LocalWeekDay = Json[i]["LocalWeekDay"].stringValue
-                    jobData.JobCategoryColorName = Json[i]["JobCategoryColorName"].stringValue
-                     jobData.ClientName = Json[i]["ClientName"].stringValue
-                    jobData.ClientID = Json[i]["ClientID"].stringValue
+            {
+                let jobData = JobListData()
+                jobData.JobTypeColorName = Json[i]["JobTypeColorName"].stringValue
+                jobData.UserID = Json[i]["UserID"].stringValue
+                jobData.JobCategoryColorRGBValue = Json[i]["JobCategoryColorRGBValue"].stringValue
+                jobData.JobAddress = Json[i]["JobAddress"].stringValue
+                jobData.JobID = Json[i]["JobID"].stringValue
+                jobData.JobCity = Json[i]["JobCity"].stringValue
+                jobData.LocalScheduleDate = Json[i]["LocalScheduleDate"].stringValue
+                jobData.JobType = Json[i]["JobType"].stringValue
+                jobData.DriveMinutes = Json[i]["DriveMinutes"].stringValue
+                jobData.JobTypeColorRGBValue = Json[i]["JobTypeColorRGBValue"].stringValue
+                jobData.JobTypeColorHexValue = Json[i]["JobTypeColorHexValue"].stringValue
+                jobData.LocalScheduleTime = Json[i]["LocalScheduleTime"].stringValue
+                jobData.JobCategoryColorHEXValue = Json[i]["JobCategoryColorHEXValue"].stringValue
+                jobData.JobPostalCode = Json[i]["JobPostalCode"].stringValue
+                
+                jobData.JobContactMobile = Json[i]["JobContactMobile"].stringValue
+                jobData.JobState = Json[i]["JobState"].stringValue
+                jobData.DriveDistance = Json[i]["DriveDistance"].stringValue
+                jobData.ReferenceNo = Json[i]["ReferenceNo"].stringValue
+                jobData.LocalWeekDay = Json[i]["LocalWeekDay"].stringValue
+                jobData.JobCategoryColorName = Json[i]["JobCategoryColorName"].stringValue
+                jobData.ClientName = Json[i]["ClientName"].stringValue
+                jobData.ClientID = Json[i]["ClientID"].stringValue
                 jobListData.append(jobData)
             }
             
@@ -160,10 +168,11 @@ let CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
         jobListData = jobDataListSortedByLocalScheduleTime
         
         jobListDataTableView.reloadData()
+        activityIndicator.stopAnimating()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       print("count\( jobListData.count)")
+        print("count\( jobListData.count)")
         return  jobListData.count
     }
     
@@ -171,34 +180,100 @@ let CurrentLocation =   Q6JobServiceCommonLibrary.getCurrentLocation()
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let  cell = tableView.dequeueReusableCell(withIdentifier: "JobListTableViewCell", for: indexPath) as! JobListTableViewCell
+        let  cell = tableView.dequeueReusableCell(withIdentifier: "JobListTableViewCell", for: indexPath) as! JobListTableViewCell
         
-        var colorHexValue =  jobListData[indexPath.row].JobTypeColorHexValue
         
-        var colorRGBValue = jobListData[indexPath.row].JobTypeColorRGBValue
-      
-       var jobID = jobListData[indexPath.row].JobID
-//        let  red = Q6JobServiceCommonLibrary.splitRBGValue(RGBString: colorRGBValue).0
-//      
-//        let  green   = Q6JobServiceCommonLibrary.splitRBGValue(RGBString: colorRGBValue).1
-//        let  blue = Q6JobServiceCommonLibrary.splitRBGValue(RGBString: colorRGBValue).2
-        let (red ,green,blue ) = Q6JobServiceCommonLibrary.splitRBGValue(RGBString: colorRGBValue)
-       // print("colorHexValue \(colorHexValue)")
-        print("colorRGBValue \(colorRGBValue)")
-        print("jobID\(jobID)")
-        if colorRGBValue != nil {
-        if (colorRGBValue?.characters.count)! > 0 {
-           
-            print("red \(red) blue \(blue) green \(green)")
-           
-                cell.JobTypeColorLabel.backgroundColor = UIColor(red: CGFloat(red / 255), green:CGFloat(green / 255), blue:CGFloat(blue / 255), alpha: 1)
-        // cell.JobTypeColorLabel.layer.backgroundColor = UIColor(red: 255, green: 69, blue:0, alpha: 1).cgColor
-           // cell.JobTypeColorLabel.backgroundColor = UIColor(colorLiteralRed: 255, green: 609, blue: 0, alpha: 1)
+        // Setup JobTypeColorRGBValue
+        // var colorHexValue =  jobListData[indexPath.row].JobTypeColorHexValue
+        
+        var JobTypecolorRGBValue = jobListData[indexPath.row].JobTypeColorRGBValue
+        
+        
+        let (JobTypeRed ,JobTypeGreen,JobTypeBlue ) = Q6JobServiceCommonLibrary.splitRBGValue(RGBString: JobTypecolorRGBValue)
+        
+        print("colorRGBValue \(String(describing: JobTypecolorRGBValue))")
+        
+        if JobTypecolorRGBValue != nil {
+            if (JobTypecolorRGBValue?.characters.count)! > 0 {
+                
+                print("red \(JobTypeRed) blue \(JobTypeBlue) green \(JobTypeGreen)")
+                
+                cell.JobTypeColorLabel.backgroundColor = UIColor(red: CGFloat(JobTypeRed / 255), green:CGFloat(JobTypeGreen / 255), blue:CGFloat(JobTypeBlue / 255), alpha: 1)
+            }
         }
+        //Setup JobCategoryColorRGBValue
+        
+        var JobCategorycolorRGBValue = jobListData[indexPath.row].JobCategoryColorRGBValue
+        
+        
+        let (JobCategoryRed ,JobCategoryGreen,JobCategoryBlue ) = Q6JobServiceCommonLibrary.splitRBGValue(RGBString: JobCategorycolorRGBValue)
+        
+        print("colorRGBValue \(String(describing: JobCategorycolorRGBValue))")
+        
+        if JobCategorycolorRGBValue != nil {
+            if (JobCategorycolorRGBValue?.characters.count)! > 0 {
+                
+                print("red \(JobCategoryRed) blue \(JobCategoryBlue) green \(JobCategoryGreen)")
+                
+                cell.JobCategoryColor.backgroundColor = UIColor(red: CGFloat(JobCategoryRed / 255), green:CGFloat(JobCategoryGreen / 255), blue:CGFloat(JobCategoryBlue / 255), alpha: 1)
+                
+                
+            }
         }
+        
+        //Setup ClientName
+        
+        let clientName = jobListData[indexPath.row].ClientName
+        cell.ClientName.text = clientName
+        
+        // Setup AddressLine1
+        let JobAddress = jobListData[indexPath.row].JobAddress == nil ? "" : jobListData[indexPath.row].JobAddress!
+        let JobAddressLine2 = jobListData[indexPath.row].JobAddressLine2 == nil ? "" : jobListData[indexPath.row].JobAddressLine2!
+        let JobAddressCity = jobListData[indexPath.row].JobCity == nil ? "" : jobListData[indexPath.row].JobCity!
+        
+     
+        cell.AddressLine1.text = JobAddress + " " + JobAddressLine2 + " " + JobAddressCity
+        
+        //Setup AddressLine2
+        
+        let JobPostalCode = jobListData[indexPath.row].JobPostalCode == nil ? "" : jobListData[indexPath.row].JobPostalCode!
+        
+        let JobAddressState  = jobListData[indexPath.row].JobState == nil ? "" : jobListData[indexPath.row].JobState!
+        cell.AddressLine2.text = JobAddressState + " " + JobPostalCode
+        
+        //setup drivemin,drivekilo
+        let driveMinutes = jobListData[indexPath.row].DriveMinutes == nil ? "0" : jobListData[indexPath.row].DriveMinutes!
+        let driveDistance = jobListData[indexPath.row].DriveDistance == nil ? "0" : jobListData[indexPath.row].DriveDistance!
+        
+        cell.DriveMinWithDrivekilo.text = driveMinutes + "min -" + driveDistance + "km"
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        callJoblistByUserWebApiFromSearchBar()
+    }
+    func searchBarSearchButtonClicked( _ searchBar: UISearchBar)
+    {
+        callJoblistByUserWebApiFromSearchBar()
+    }
+    
+    func callJoblistByUserWebApiFromSearchBar(){
+        
+        let searchBarText = jobListSearchBar.text
+        
+        if (searchBarText?.characters.count)! > 0
+        {
+            setAttachedURL(ByEmail: byEmail, SearchText: searchBarText!, Longitude:longitude, Latitude: latitude, JobType: JobType, JobStatus: JobStatus ,IsJobCompleted: IsJobCompleted)
+            
+            let loginDetail =   Q6JobServiceDBLibrary.getLoginDetailRow()
+            byEmail = loginDetail.LoginEmail!
+            let APIURL = getStaffScheduledJobList(loginDetail: loginDetail, ByEmail: byEmail, SearchText: searchBarText!, longitude: longitude, latitude: latitude, JobType: JobType, JobStatus: JobStatus, IsJobCompleted: IsJobCompleted)
+            
+             callGetStaffScheduledJobListWebApi(ApiUrl: APIURL)
+        }
     }
 }

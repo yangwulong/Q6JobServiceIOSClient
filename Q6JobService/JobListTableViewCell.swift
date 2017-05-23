@@ -10,6 +10,13 @@ import UIKit
 
 class JobListTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var AddressLine2: UILabel!
+    @IBOutlet weak var AddressLine1: UILabel!
+    @IBOutlet weak var ClientName: UILabel!
+    @IBOutlet weak var DriveMinWithDrivekilo: UILabel!
+    @IBOutlet weak var JobContactMobile: UILabel!
+    @IBOutlet weak var LocalScheduleTime: UILabel!
+    @IBOutlet weak var JobCategoryColor: UILabel!
     @IBOutlet weak var JobTypeColorLabel: UILabel!
     @IBOutlet weak var CustomerName: UILabel!
     override func awakeFromNib() {
