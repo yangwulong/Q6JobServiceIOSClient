@@ -11,6 +11,8 @@ import Alamofire
 import SwiftyJSON
 class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
     
+    @IBOutlet weak var newActionView: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var jobListSearchBar: JobSearchBar!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var jobListDataTableView: UITableView!
@@ -26,7 +28,10 @@ class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIS
     var JobStatus = "Open"
     var CurrentLocation:(Double?,Double?)
     var IsJobCompleted = "NO"
-    @IBOutlet weak var JobListTableView: UITableView!
+
+    override func viewWillAppear(_ animated: Bool) {
+        newActionView.isHidden = true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +41,7 @@ class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIS
         
         // Do any additional setup after loading the view.
         
-        JobListTableView.tableFooterView = UIView()
+        jobListDataTableView.tableFooterView = UIView()
         loginDetail =   Q6JobServiceDBLibrary.getLoginDetailRow()
         byEmail = loginDetail.LoginEmail!
         //
@@ -277,5 +282,53 @@ class JobListVC: UIViewController ,UITableViewDelegate,UITableViewDataSource,UIS
             
             callGetStaffScheduledJobListWebApi(ApiUrl: APIURL)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        jobListSearchBar.resignFirstResponder()
+    }
+    @IBAction func AddBarButtonClick(_ sender: Any) {
+        
+ 
+        setupNewActionViewSizePosition()
+
+    }
+    
+    func setupNewActionViewSizePosition()
+    {
+       let ScreenSize: CGRect = UIScreen.main.bounds
+//        
+//        let screenWidth = screenSize.width
+//        let screenHeight = screenSize.height
+//        
+//        
+//        let xPosition = newActionView.frame.origin.x
+//        
+//        //View will slide 20px up
+//        let yPosition = newActionView.frame.origin.y - 20
+//        
+////         newActionView.frame.size.height = screenHeight
+////        newActionView.frame.size.width = screenWidth
+//        newActionView.frame.size = CGSize(width: screenWidth, height: screenHeight)
+//        UIView.animate(withDuration: 1.0, animations: {
+//            
+//            self.newActionView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+//            
+//            self.cancelButton.frame = CGRect(x:160 ,y:300 ,width: self.cancelButton.frame.width,height:self.cancelButton.frame.height)
+//            
+//        })
+        
+        //intially set x = SCREEN_WIDTH
+        newActionView.frame = CGRect(x:0, y: ScreenSize.height , width: ScreenSize.width, height: ScreenSize.height )
+        
+        UIView.animate(withDuration: 0.50, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: [], animations: {
+            //Set x position what ever you want
+            self.newActionView.isHidden = false
+           self.newActionView.frame = CGRect(x: 0, y: 0 , width: ScreenSize.width, height: ScreenSize.height )
+            
+        }, completion: nil)
+    }
+    @IBAction func CancelButtonClick(_ sender: Any) {
+        newActionView.isHidden = true
     }
 }

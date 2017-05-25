@@ -42,7 +42,7 @@ class TaskListTabVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
         callTasklistByUserWebApi(ApiUrl: apiUrl)
         
         
-
+        
     }
     
     func callTasklistByUserWebApi(ApiUrl:String)
@@ -127,9 +127,9 @@ class TaskListTabVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
         let dueDateStr = taskListData[indexPath.row]["JobTaskDueDate"].stringValue
         
         cell.DueDate.text = Q6JobServiceCommonLibrary.convertStringToDateStr(DateStr: dueDateStr)
-      //  cell.StaffName.text = taskListData[indexPath.row]["JobTaskAssignToUserName"].stringValue
+        //  cell.StaffName.text = taskListData[indexPath.row]["JobTaskAssignToUserName"].stringValue
         
-      //  cell.TaskDetail.text = taskListData[indexPath.row]["JobTaskDetail"].stringValue
+        //  cell.TaskDetail.text = taskListData[indexPath.row]["JobTaskDetail"].stringValue
         //        cell.lblContactID.isHidden = true
         //
         //
@@ -147,11 +147,13 @@ class TaskListTabVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-       callTasklistByUserWebApiFromSearchBar()
+        callTasklistByUserWebApiFromSearchBar()
+        taskListSearchBar.resignFirstResponder()
     }
     func searchBarSearchButtonClicked( _ searchBar: UISearchBar)
     {
         callTasklistByUserWebApiFromSearchBar()
+        taskListSearchBar.resignFirstResponder()
     }
     
     func callTasklistByUserWebApiFromSearchBar(){
@@ -160,7 +162,7 @@ class TaskListTabVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
         
         if (searchBarText?.characters.count)! > 0
         {
-          setAttachedURL(ByEmail: byEmail, SearchText: searchBarText!, IsCompleted: isCompleted)
+            setAttachedURL(ByEmail: byEmail, SearchText: searchBarText!, IsCompleted: isCompleted)
             
             let loginDetail =   Q6JobServiceDBLibrary.getLoginDetailRow()
             byEmail = loginDetail.LoginEmail!
@@ -168,5 +170,8 @@ class TaskListTabVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
             
             callTasklistByUserWebApi(ApiUrl: apiUrl)
         }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        taskListSearchBar.resignFirstResponder()
     }
 }
